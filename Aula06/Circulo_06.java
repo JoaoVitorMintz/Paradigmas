@@ -1,18 +1,17 @@
 // Classe A (Circulo)
-public class Circulo{
+public class Circulo_06 extends Ponto2D_06 {
    private double raio;
-   private Ponto2D ponto;
 
    // atributos para definir o circulo
-   public Circulo(double raio, Ponto2D ponto) {
+   public Circulo_06(double raio, double x, double y) {
+      super(x, y);
       this.raio = raio;
-      this.ponto = new Ponto2D(ponto.getX(), ponto.getY());
    }
    
    // associacao por agregacao (ponto gerado fora do método)
-   public boolean contains(Ponto2D ponto) {
-      double dx = ponto.getX() - this.ponto.getX();
-      double dy = ponto.getY() - this.ponto.getY();
+   public boolean contains(Ponto2D_06 ponto) {
+      double dx = ponto.getX() - this.getX();
+      double dy = ponto.getY() - this.getY();
 
       return ((dx*dx + dy*dy) <= (this.raio*this.raio));
    }
@@ -20,7 +19,7 @@ public class Circulo{
    
    // associacaoo por composicao (gera o ponto dentro do método)
    public boolean contains(double x, double y) {
-      return contains(new Ponto2D(x, y));
+      return contains(new Ponto2D_06(x, y));
    }
    
 

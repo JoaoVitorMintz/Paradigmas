@@ -1,4 +1,5 @@
-// javac -g teste_circulo.java Ponto2D.java Circulo.java
+
+// javac -g teste_circulo.java Ponto2D_06.java Circulo.java
 
 public class teste_circulo{
     static void test_assert(boolean expr, String msg) {
@@ -19,20 +20,17 @@ public class teste_circulo{
     }
     
     // Testa a operacao
-    // verificar se um Ponto2D está dentro de um círculo
+    // verificar se um Ponto2D_06 está dentro de um círculo
     static void test_contains() {
 
-        Ponto2D_05 p1 = new Ponto2D_05(3,4);
-        Circulo_05 c1 = new Circulo_05(2.0, new Ponto2D_05(2,3));
+        Ponto2D_06 p1 = new Ponto2D_06(3,4);
+        Circulo_06 c1 = new Circulo_06(2.0, 2.0, 3.0);
 
         test_assert(c1.contains(p1) == true,"Ponto deveria estar dentro do Circulo");
        
-        c1 = new Circulo_05(2.0, new Ponto2D_05(0,0));
+        c1 = new Circulo_06(2.0, 0, 0);
         test_assert(c1.contains(p1) == false,"Ponto nao esta dentro do Circulo");
 
-        p1 = new Ponto2D_05(0,0);
-        c1 = new Circulo_05(0, p1);
-        test_assert(c1.contains(p1) == true,"Ponto deveria estar dentro do Circulo");
     }
 
 

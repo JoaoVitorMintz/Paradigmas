@@ -19,7 +19,7 @@
 //
 // para sair
 // quit
-public class teste_ponto2d{
+public class teste_ponto2d_07{
     static void test_assert(boolean expr, String msg) {
         if (!expr) {
             StackTraceElement[] stack = Thread.currentThread().getStackTrace();
@@ -41,12 +41,12 @@ public class teste_ponto2d{
     // Testa tambem a operacao que retorna os valores das componentes x e y do ponto;
     static void test_new_get(){
 
-        Ponto2D_04 p = new Ponto2D_04(0,0);
+        Ponto2D_07 p = new Ponto2D_07(0,0);
 
         test_assert(p.getX() == 0, "Erro na inicializacao do atributo x");
         test_assert(p.getY() == 0, "Erro na inicializacao do atributo y");
         
-        p = new Ponto2D_04(10,20);
+        p = new Ponto2D_07(10,20);
 
         test_assert(p.getX() == 10, "Erro na inicializacao do atributo x");
         test_assert(p.getY() == 20, "Erro na inicializacao do atributo y");
@@ -55,9 +55,9 @@ public class teste_ponto2d{
     // Somar dois pontos (e obter um terceiro);
     static void test_add() {
 
-        Ponto2D_04 a = new Ponto2D_04(10.5, 20);
-        Ponto2D_04 b = new Ponto2D_04(30, 40.3);
-        Ponto2D_04 c = a.add(b);
+        Ponto2D_07 a = new Ponto2D_07(10.5, 20);
+        Ponto2D_07 b = new Ponto2D_07(30, 40.3);
+        Ponto2D_07 c = a.add(b);
         
 
         test_assert(c != null, "Erro na alocacao do objeto Ponto2D c !");
@@ -69,14 +69,14 @@ public class teste_ponto2d{
     // esta operacao equivale a mudanca de escala;
     static void test_scale() {
 
-        Ponto2D_04 a = new Ponto2D_04(10.5, 20);
-        Ponto2D_04 b = a.scale(2.5);
+        Ponto2D_07 a = new Ponto2D_07(10.5, 20);
+        Ponto2D_07 b = a.scale(2.5);
 
         test_assert(b != null, "Erro na alocacao do objeto Ponto2D b !");
         test_assert(b.getX() == 26.25, "Erro na escala: componente x!");
         test_assert(b.getY() == 50, "Erro na escala: componente y!");
 
-        Ponto2D_04 c = a.scale(0);
+        Ponto2D_07 c = a.scale(0);
         test_assert(c.getX() == 0, "Erro na escala: componente x!");
         test_assert(c.getY() == 0, "Erro na escala: componente y!");
 
@@ -87,13 +87,13 @@ public class teste_ponto2d{
     // https://www.todamateria.com.br/calculo-do-coeficiente-angular/
     static void test_coefAngular() {
 
-        Ponto2D_04 a = new Ponto2D_04(2,3);
-        Ponto2D_04 b = new Ponto2D_04(4,5);
+        Ponto2D_07 a = new Ponto2D_07(2,3);
+        Ponto2D_07 b = new Ponto2D_07(4,5);
 
         test_assert(a.gradient(b) == 1,"Erro na inclinacao da reta!");
 
-        a = new Ponto2D_04(2,3);
-        b = new Ponto2D_04(4,4);
+        a = new Ponto2D_07(2,3);
+        b = new Ponto2D_07(4,4);
 
         test_assert(a.gradient(b) == 0.5,"Erro na inclinacao da reta!");
         
@@ -102,20 +102,37 @@ public class teste_ponto2d{
     }
 
     static void test_distEuclid() {
-        Ponto2D_04 a = new Ponto2D_04(0, 0);
-        Ponto2D_04 b = new Ponto2D_04(3, 4);
+        Ponto2D_07 a = new Ponto2D_07(0, 0);
+        Ponto2D_07 b = new Ponto2D_07(3, 4);
 
         // distância clássica 3-4-5
         test_assert(a.distEuclid(b) == 5.0, "Erro no calculo da distancia!");
 
-        a = new Ponto2D_04(1, 1);
-        b = new Ponto2D_04(4, 5);
+        a = new Ponto2D_07(1, 1);
+        b = new Ponto2D_07(4, 5);
 
         // (3² + 4²) = 25 → raiz = 5
         test_assert(a.distEuclid(b) == 5.0, "Erro no calculo da distancia!");
 
         // mesmo ponto → distância 0
         test_assert(a.distEuclid(a) == 0.0, "Erro: distancia deveria ser 0!");
+    }
+
+    static void test_toString() {
+        Ponto2D_07 p = new Ponto2D_07(2, 3);
+
+        test_assert(p.toString().equals("(2.0, 3.0)"),
+                    "Erro no metodo toString!");
+    }
+
+    static void test_equals() {
+        Ponto2D_07 a = new Ponto2D_07(2, 3);
+        Ponto2D_07 b = new Ponto2D_07(2, 3);
+        Ponto2D_07 c = new Ponto2D_07(3, 4);
+
+        test_assert(a.equals(b), "Erro: pontos iguais deveriam ser iguais!");
+        test_assert(!a.equals(c), "Erro: pontos diferentes nao deveriam ser iguais!");
+        test_assert(a.equals(a), "Erro: objeto deve ser igual a ele mesmo!");
     }
 
 
@@ -138,6 +155,12 @@ public class teste_ponto2d{
 
         test_distEuclid();
         System.out.println("test_distEuclid [PASS]\n");
+
+        test_toString();
+        System.out.println("test_toString [PASS]\n");
+
+        test_equals();
+        System.out.println("test_equals [PASS]\n");
 
         System.out.println("================");
         System.out.println("TODOS TESTES PASS");
